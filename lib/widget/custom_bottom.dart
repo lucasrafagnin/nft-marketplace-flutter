@@ -28,17 +28,17 @@ class CustomBottom extends StatelessWidget {
       items: const [
         BottomNavigationBarItem(
           icon: Icon(
-            Icons.trending_up,
+            Icons.collections,
             color: Colors.white,
           ),
-          label: "Trending",
+          label: "Collections",
         ),
         BottomNavigationBarItem(
           icon: Icon(
-            Icons.collections,
+            Icons.trending_up,
             color: Colors.grey,
           ),
-          label: "Collections",
+          label: "Hype",
         ),
         BottomNavigationBarItem(
           icon: Icon(

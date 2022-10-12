@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:nft_showcase/model/collection.dart';
 import 'package:nft_showcase/model/ranking.dart';
-import 'package:nft_showcase/pages/collection_detail.dart';
-import 'package:nft_showcase/service/service.dart';
+import 'package:nft_showcase/repositories/collection_repository_impl.dart';
 
 import '../widget/custom_bottom.dart';
 
 class HomePage extends StatefulWidget {
+  static const routeName = "/";
+
   const HomePage({super.key});
 
   @override
@@ -17,13 +18,14 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final _pageController = PageController();
+  final _collectionRepository = CollectionRepositoryImpl();
   late Future<Ranking> ranking;
   var tabIndex = 0;
 
   @override
   void initState() {
     super.initState();
-    ranking = Service().getCollectionRanking();
+    ranking = _collectionRepository.getCollectionRanking();
   }
 
   @override

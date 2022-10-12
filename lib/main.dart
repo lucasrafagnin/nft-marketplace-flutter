@@ -17,8 +17,9 @@ class NftShowcase extends StatelessWidget {
       initialRoute: "/",
       onGenerateRoute: (RouteSettings settings) {
         var routes = <String, WidgetBuilder>{
-          "/": (context) => const HomePage(),
-          "/collection": (context) => CollectionDetail(settings.arguments),
+          HomePage.routeName: (_) => const HomePage(),
+          CollectionDetail.routeName: (_) =>
+              CollectionDetail(settings.arguments),
         };
         WidgetBuilder? builder = routes[settings.name];
         return MaterialPageRoute(builder: (ctx) => builder!(ctx));

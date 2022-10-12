@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:nft_showcase/model/nft.dart';
-import 'package:nft_showcase/service/service.dart';
+import 'package:nft_showcase/repositories/collection_repository_impl.dart';
 
 class CollectionDetail extends StatefulWidget {
+  static const routeName = "/collection";
   final dynamic collection;
 
   const CollectionDetail(this.collection, {super.key});
@@ -13,12 +14,14 @@ class CollectionDetail extends StatefulWidget {
 
 class _CollectionDetailState extends State<CollectionDetail> {
   late Future<List<Nft>> nfts;
+  final _collectionRepository = CollectionRepositoryImpl();
 
   @override
   void initState() {
     super.initState();
 
-    nfts = Service().getNFTsByCollection(widget.collection.contract);
+    nfts =
+        _collectionRepository.getNFTsByCollection(widget.collection.contract);
   }
 
   @override
@@ -27,6 +30,7 @@ class _CollectionDetailState extends State<CollectionDetail> {
       backgroundColor: Colors.black,
       appBar: AppBar(
         title: Text(widget.collection.name),
+        backgroundColor: Colors.black,
       ),
       body: Center(
         child: FutureBuilder<List<Nft>>(
