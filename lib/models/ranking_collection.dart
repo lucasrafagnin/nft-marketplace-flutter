@@ -1,16 +1,16 @@
 import 'package:nft_showcase/models/collection.dart';
 
-class Ranking {
+class RankingCollection {
   final int total;
   final List<Collection> collection;
 
-  const Ranking({
+  const RankingCollection({
     required this.total,
     required this.collection,
   });
 
-  factory Ranking.fromJson(Map<String, dynamic> json) {
-    return Ranking(
+  factory RankingCollection.fromJson(Map<String, dynamic> json) {
+    return RankingCollection(
       total: json['total'],
       collection: (json['collections'] as List)
           .map((e) => Collection.fromJson(e))

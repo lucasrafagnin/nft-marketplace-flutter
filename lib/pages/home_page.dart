@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nft_showcase/models/ranking.dart';
-import 'package:nft_showcase/repositories/collection_repository_impl.dart';
-import 'package:nft_showcase/widgets/cell_collection_item.dart';
-
-import '../widgets/custom_bottom.dart';
+import 'package:nft_showcase/pages/tab_collection.dart';
+import 'package:nft_showcase/pages/tab_nft.dart';
 
 class HomePage extends StatefulWidget {
   static const routeName = "/";
@@ -17,16 +14,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final _pageController = PageController();
-  final _collectionRepository = CollectionRepositoryImpl();
-  late Future<Ranking> ranking;
-  var tabIndex = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    ranking = _collectionRepository.getCollectionRanking();
-  }
+  final List<Widget> _tabs = [
+    const TabCollection(),
+    const TabNFT(),
+    const TabCollection()
+  ];
+  int pageIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -36,30 +29,31 @@ class _HomePageState extends State<HomePage> {
         title: const Text("NFT Marketplace"),
         backgroundColor: Colors.black,
       ),
-      body: Center(
-        child: FutureBuilder<Ranking>(
-          future: ranking,
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              var ranking = snapshot.data!;
-              return GridView.builder(
-                itemCount: ranking.collection.length,
-                itemBuilder: (context, index) {
-                  return CellCollectionItem(ranking.collection[index]);
-                },
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                ),
-              );
-            } else {
-              return const CircularProgressIndicator();
-            }
-          },
-        ),
-      ),
-      bottomNavigationBar: CustomBottom(
-        tabIndex: tabIndex,
-        pageController: _pageController,
+      body: _tabs[pageIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.grey,
+        backgroundColor: Colors.deepPurple,
+        currentIndex: pageIndex,
+        onTap: (int page) {
+          setState(() {
+            pageIndex = page;
+          });
+        },
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.collections),
+            label: "Collections",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.trending_up),
+            label: "Hype",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.wallet),
+            label: "Wallet",
+          ),
+        ],
       ),
     );
   }
