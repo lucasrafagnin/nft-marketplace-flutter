@@ -13,17 +13,29 @@ class NftShowcase extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'NFT Showcase',
+      theme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,
       initialRoute: HomePage.routeName,
       onGenerateRoute: (RouteSettings settings) {
-        var routes = <String, WidgetBuilder>{
-          HomePage.routeName: (_) => const HomePage(),
-          CollectionDetail.routeName: (_) =>
+        switch (settings.name) {
+          case HomePage.routeName:
+            return getRoute(const HomePage());
+          case CollectionDetail.routeName:
+            return getRoute(
               CollectionDetail(settings.arguments),
-        };
-        WidgetBuilder? builder = routes[settings.name];
-        return MaterialPageRoute(builder: (ctx) => builder!(ctx));
+              fullScreen: true,
+            );
+          default:
+            return getRoute(const HomePage());
+        }
       },
+    );
+  }
+
+  MaterialPageRoute getRoute(Widget screen, {bool fullScreen = false}) {
+    return MaterialPageRoute(
+      builder: (context) => screen,
+      fullscreenDialog: fullScreen,
     );
   }
 }
