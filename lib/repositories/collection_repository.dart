@@ -1,5 +1,5 @@
-import '../model/nft.dart';
-import '../model/ranking.dart';
+import '../models/nft.dart';
+import '../models/ranking.dart';
 
 abstract class CollectionRepository {
   Future<Ranking> getCollectionRanking();

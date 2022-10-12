@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nft_showcase/model/nft.dart';
+import 'package:nft_showcase/models/nft.dart';
 import 'package:nft_showcase/repositories/collection_repository_impl.dart';
+import 'package:nft_showcase/widgets/cell_nft_item.dart';
 
 class CollectionDetail extends StatefulWidget {
   static const routeName = "/collection";
@@ -41,7 +42,7 @@ class _CollectionDetailState extends State<CollectionDetail> {
               return GridView.builder(
                 itemCount: nfts.length,
                 itemBuilder: (context, index) {
-                  return _cell(nfts[index]);
+                  return CellNftItem(nfts[index]);
                 },
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
@@ -52,21 +53,6 @@ class _CollectionDetailState extends State<CollectionDetail> {
             }
           },
         ),
-      ),
-    );
-  }
-
-  Widget _cell(Nft nft) {
-    return Card(
-      child: Column(
-        children: [
-          Card(
-            child: Image.network(
-              nft.image,
-              fit: BoxFit.fitHeight,
-            ),
-          ),
-        ],
       ),
     );
   }

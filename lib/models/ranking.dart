@@ -1,4 +1,4 @@
-import 'package:nft_showcase/model/collection.dart';
+import 'package:nft_showcase/models/collection.dart';
 
 class Ranking {
   final int total;

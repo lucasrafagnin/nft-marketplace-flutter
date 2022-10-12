@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:nft_showcase/model/collection.dart';
-import 'package:nft_showcase/model/ranking.dart';
+import 'package:nft_showcase/models/ranking.dart';
 import 'package:nft_showcase/repositories/collection_repository_impl.dart';
+import 'package:nft_showcase/widgets/cell_collection_item.dart';
 
-import '../widget/custom_bottom.dart';
+import '../widgets/custom_bottom.dart';
 
 class HomePage extends StatefulWidget {
   static const routeName = "/";
@@ -45,7 +45,7 @@ class _HomePageState extends State<HomePage> {
               return GridView.builder(
                 itemCount: ranking.collection.length,
                 itemBuilder: (context, index) {
-                  return _cell(ranking.collection[index]);
+                  return CellCollectionItem(ranking.collection[index]);
                 },
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
@@ -60,22 +60,6 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: CustomBottom(
         tabIndex: tabIndex,
         pageController: _pageController,
-      ),
-    );
-  }
-
-  Widget _cell(Collection collection) {
-    return Card(
-      child: InkResponse(
-        onTap: () => Navigator.pushNamed(
-          context,
-          "/collection",
-          arguments: collection,
-        ),
-        child: Image.network(
-          collection.logo,
-          fit: BoxFit.fitHeight,
-        ),
       ),
     );
   }

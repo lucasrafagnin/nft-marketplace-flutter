@@ -1,10 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:nft_showcase/repositories/collection_repository.dart';
 
-import '../model/nft.dart';
-import '../model/ranking.dart';
+import '../models/nft.dart';
+import '../models/ranking.dart';
 
 class CollectionRepositoryImpl extends CollectionRepository {
   final dio = Dio();
