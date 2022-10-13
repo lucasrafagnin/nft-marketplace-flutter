@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nft_showcase/controllers/collection_controller.dart';
 import 'package:nft_showcase/repositories/collection_repository_impl.dart';
+import 'package:nft_showcase/service/api_service.dart';
 import 'package:nft_showcase/widgets/cell_nft_item.dart';
 
 class CollectionDetail extends StatefulWidget {
@@ -15,7 +16,7 @@ class CollectionDetail extends StatefulWidget {
 
 class _CollectionDetailState extends State<CollectionDetail> {
   final _controller = CollectionController(
-    CollectionRepositoryImpl(),
+    CollectionRepositoryImpl(ApiService()),
   );
 
   @override

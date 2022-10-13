@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nft_showcase/controllers/tab_collection_controller.dart';
+import 'package:nft_showcase/service/api_service.dart';
 
 import '../repositories/collection_repository_impl.dart';
 import '../widgets/cell_collection_item.dart';
@@ -13,7 +14,7 @@ class TabCollection extends StatefulWidget {
 
 class _TabCollectionState extends State<TabCollection> {
   final _controller = TabCollectionController(
-    CollectionRepositoryImpl(),
+    CollectionRepositoryImpl(ApiService()),
   );
 
   @override
