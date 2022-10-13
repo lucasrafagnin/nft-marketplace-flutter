@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nft_showcase/models/nft.dart';
+import 'package:nft_showcase/controllers/collection_controller.dart';
 import 'package:nft_showcase/repositories/collection_repository_impl.dart';
 import 'package:nft_showcase/widgets/cell_nft_item.dart';
 
@@ -14,15 +14,14 @@ class CollectionDetail extends StatefulWidget {
 }
 
 class _CollectionDetailState extends State<CollectionDetail> {
-  late Future<List<Nft>> nfts;
-  final _collectionRepository = CollectionRepositoryImpl();
+  final _controller = CollectionController(
+    CollectionRepositoryImpl(),
+  );
 
   @override
   void initState() {
     super.initState();
-
-    nfts =
-        _collectionRepository.getNFTsByCollection(widget.collection.contract);
+    _controller.fetchNFTsByCollection(widget.collection.contract);
   }
 
   @override
@@ -34,15 +33,14 @@ class _CollectionDetailState extends State<CollectionDetail> {
         backgroundColor: Colors.black,
       ),
       body: Center(
-        child: FutureBuilder<List<Nft>>(
-          future: nfts,
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              var nfts = snapshot.data!;
+        child: ValueListenableBuilder(
+          valueListenable: _controller.nftList,
+          builder: (context, value, child) {
+            if (value.isNotEmpty) {
               return GridView.builder(
-                itemCount: nfts.length,
+                itemCount: value.length,
                 itemBuilder: (context, index) {
-                  return CellNftItem(nfts[index]);
+                  return CellNftItem(value[index]);
                 },
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,

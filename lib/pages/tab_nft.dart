@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nft_showcase/models/ranking_nft.dart';
+import 'package:nft_showcase/controllers/tab_nft_controller.dart';
 import 'package:nft_showcase/widgets/cell_nft_item.dart';
 import '../repositories/collection_repository_impl.dart';
 
@@ -11,27 +11,27 @@ class TabNFT extends StatefulWidget {
 }
 
 class _TabNFTState extends State<TabNFT> {
-  final _collectionRepository = CollectionRepositoryImpl();
-  late Future<RankingNft> _ranking;
+  final _controller = TabNftController(
+    CollectionRepositoryImpl(),
+  );
 
   @override
   void initState() {
     super.initState();
-    _ranking = _collectionRepository.getNftRanking();
+    _controller.fetchNftRanking();
   }
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: FutureBuilder<RankingNft>(
-        future: _ranking,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            var ranking = snapshot.data!;
+      child: ValueListenableBuilder(
+        valueListenable: _controller.nftList,
+        builder: (context, value, child) {
+          if (value != null) {
             return GridView.builder(
-              itemCount: ranking.nfts.length,
+              itemCount: value.length,
               itemBuilder: (context, index) {
-                return CellNftItem(ranking.nfts[index]);
+                return CellNftItem(value[index]);
               },
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,

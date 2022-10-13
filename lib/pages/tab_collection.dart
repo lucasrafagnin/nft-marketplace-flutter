@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:nft_showcase/controllers/tab_collection_controller.dart';
 
-import '../models/ranking_collection.dart';
 import '../repositories/collection_repository_impl.dart';
 import '../widgets/cell_collection_item.dart';
 
@@ -12,27 +12,27 @@ class TabCollection extends StatefulWidget {
 }
 
 class _TabCollectionState extends State<TabCollection> {
-  final _collectionRepository = CollectionRepositoryImpl();
-  late Future<RankingCollection> _ranking;
+  final _controller = TabCollectionController(
+    CollectionRepositoryImpl(),
+  );
 
   @override
   void initState() {
     super.initState();
-    _ranking = _collectionRepository.getCollectionRanking();
+    _controller.fetchCollectionRanking();
   }
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: FutureBuilder<RankingCollection>(
-        future: _ranking,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            var ranking = snapshot.data!;
+      child: ValueListenableBuilder(
+        valueListenable: _controller.collectionList,
+        builder: (context, value, child) {
+          if (value != null) {
             return GridView.builder(
-              itemCount: ranking.collection.length,
+              itemCount: value.length,
               itemBuilder: (context, index) {
-                return CellCollectionItem(ranking.collection[index]);
+                return CellCollectionItem(value[index]);
               },
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
