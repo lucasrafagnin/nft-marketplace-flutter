@@ -15,9 +15,12 @@ class CellCollectionItem extends StatelessWidget {
           "/collection",
           arguments: _collection,
         ),
-        child: Image.network(
-          _collection.logo,
-          fit: BoxFit.fitHeight,
+        child: Hero(
+          tag: _collection.contract,
+          child: Image.network(
+            _collection.logo,
+            fit: BoxFit.fitHeight,
+          ),
         ),
       ),
     );
