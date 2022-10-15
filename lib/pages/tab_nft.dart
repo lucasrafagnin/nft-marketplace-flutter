@@ -15,6 +15,15 @@ class _TabNFTState extends State<TabNFT> {
   final _controller = TabNftController(
     CollectionRepositoryImpl(ApiService()),
   );
+  final categoryTags = [
+    "All",
+    "Metaverse",
+    "Game",
+    "Art",
+    "Sports",
+    "Photography"
+  ];
+  var choiceIndex = 0;
 
   @override
   void initState() {
@@ -22,26 +31,67 @@ class _TabNFTState extends State<TabNFT> {
     _controller.fetchNftRanking();
   }
 
+  Widget _buildChoiceChips() {
+    return SizedBox(
+      height: 50,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: categoryTags.length,
+        itemBuilder: (BuildContext context, int index) {
+          return Row(
+            children: [
+              const SizedBox(
+                width: 8,
+              ),
+              ChoiceChip(
+                label: Text(categoryTags[index]),
+                selected: choiceIndex == index,
+                selectedColor: Colors.purpleAccent,
+                onSelected: (bool selected) {
+                  setState(() {
+                    choiceIndex = selected ? index : choiceIndex;
+                  });
+                },
+                backgroundColor: Colors.white10,
+                labelStyle: const TextStyle(color: Colors.white),
+              ),
+            ],
+          );
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: ValueListenableBuilder(
-        valueListenable: _controller.nftList,
-        builder: (context, value, child) {
-          if (value != null) {
-            return GridView.builder(
-              itemCount: value.length,
-              itemBuilder: (context, index) {
-                return CellNftItem(value[index]);
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          _buildChoiceChips(),
+          Center(
+            child: ValueListenableBuilder(
+              valueListenable: _controller.nftList,
+              builder: (context, value, child) {
+                if (value != null) {
+                  return GridView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: value.length,
+                    itemBuilder: (context, index) {
+                      return CellNftItem(value[index]);
+                    },
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                    ),
+                  );
+                } else {
+                  return const CircularProgressIndicator();
+                }
               },
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-              ),
-            );
-          } else {
-            return const CircularProgressIndicator();
-          }
-        },
+            ),
+          ),
+        ],
       ),
     );
   }
