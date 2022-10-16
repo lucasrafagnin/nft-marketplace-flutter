@@ -3,11 +3,11 @@ import 'package:nft_showcase/models/nft.dart';
 
 import '../repositories/collection_repository.dart';
 
-class CollectionController {
+class CollectionDetailController {
   final CollectionRepository repository;
   var nftList = ValueNotifier<List<Nft>>([]);
 
-  CollectionController(this.repository);
+  CollectionDetailController(this.repository);
 
   fetchNFTsByCollection(String contract) async {
     nftList.value = await repository.getNFTsByCollection(contract);

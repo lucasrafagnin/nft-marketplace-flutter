@@ -47,4 +47,16 @@ class CollectionRepositoryImpl extends CollectionRepository {
       return [];
     }
   }
+
+  @override
+  Future<Nft> getNFTDetail(String contract, String tokenId) async {
+    try {
+      Response response = await apiService
+          .getHttpClient()
+          .get("${ApiService.baseUrl}/eth/v1/nft/$contract/$tokenId/info");
+      return Nft.fromJson(response.data);
+    } catch (ignored) {
+      throw Exception("");
+    }
+  }
 }

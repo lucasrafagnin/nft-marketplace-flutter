@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nft_showcase/models/nft.dart';
+import 'package:nft_showcase/pages/nft_detail.dart';
 
 class CellNftItem extends StatelessWidget {
   final Nft _nft;
@@ -7,16 +8,43 @@ class CellNftItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Column(
-        children: [
-          Card(
-            child: Image.network(
-              _nft.image,
-              fit: BoxFit.fitHeight,
-            ),
+    return InkWell(
+      onTap: () => Navigator.pushNamed(
+        context,
+        NftDetail.routeName,
+        arguments: _nft,
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(8),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(8),
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              Image.network(
+                _nft.image,
+                fit: BoxFit.cover,
+              ),
+              Positioned(
+                bottom: 0,
+                right: 0,
+                left: 0,
+                child: Container(
+                  height: 24,
+                  color: Colors.purple.shade300,
+                  child: Center(
+                    child: Text(
+                      _nft.name,
+                      maxLines: 1,
+                      style: const TextStyle(fontSize: 12),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

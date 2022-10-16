@@ -7,4 +7,5 @@ abstract class CollectionRepository {
   Future<RankingCollection> getCollectionRanking();
   Future<RankingNft> getNftRanking();
   Future<List<Nft>> getNFTsByCollection(String contract);
+  Future<Nft> getNFTDetail(String contract, String tokenId);
 }

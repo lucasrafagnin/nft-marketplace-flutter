@@ -73,16 +73,19 @@ class _TabNFTState extends State<TabNFT> {
               valueListenable: _controller.nftList,
               builder: (context, value, child) {
                 if (value != null) {
-                  return GridView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: value.length,
-                    itemBuilder: (context, index) {
-                      return CellNftItem(value[index]);
-                    },
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
+                  return Padding(
+                    padding: const EdgeInsets.only(left: 8, right: 8),
+                    child: GridView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      itemCount: value.length,
+                      itemBuilder: (context, index) {
+                        return CellNftItem(value[index]);
+                      },
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                      ),
                     ),
                   );
                 } else {

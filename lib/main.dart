@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:nft_showcase/models/collection.dart';
+import 'package:nft_showcase/models/nft.dart';
 import 'package:nft_showcase/pages/collection_detail.dart';
 import 'package:nft_showcase/pages/home_page.dart';
+import 'package:nft_showcase/pages/nft_detail.dart';
 
 void main() {
   runApp(const NftShowcase());
@@ -24,6 +26,11 @@ class NftShowcase extends StatelessWidget {
           case CollectionDetail.routeName:
             return getRoute(
               CollectionDetail(settings.arguments as Collection),
+              fullScreen: true,
+            );
+          case NftDetail.routeName:
+            return getRoute(
+              NftDetail(settings.arguments as Nft),
               fullScreen: true,
             );
           default:

@@ -14,11 +14,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final List<Widget> _tabs = [
-    const TabCollection(),
-    const TabNFT(),
-    const TabCollection()
-  ];
+  final List<Widget> _tabs = [const TabNFT(), const TabCollection()];
   int pageIndex = 0;
 
   @override
@@ -42,16 +38,12 @@ class _HomePageState extends State<HomePage> {
         },
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.collections),
-            label: "Collections",
-          ),
-          BottomNavigationBarItem(
             icon: Icon(Icons.trending_up),
             label: "Hype",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.wallet),
-            label: "Wallet",
+            icon: Icon(Icons.collections),
+            label: "Collections",
           ),
         ],
       ),

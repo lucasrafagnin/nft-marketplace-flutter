@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nft_showcase/models/collection.dart';
+import 'package:nft_showcase/pages/collection_detail.dart';
 
 class CellCollectionItem extends StatelessWidget {
   final Collection _collection;
@@ -12,7 +13,7 @@ class CellCollectionItem extends StatelessWidget {
       child: InkResponse(
         onTap: () => Navigator.pushNamed(
           context,
-          "/collection",
+          CollectionDetail.routeName,
           arguments: _collection,
         ),
         child: Hero(
