@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nft_showcase/models/collection.dart';
-import 'package:nft_showcase/pages/collection_detail.dart';
+import 'package:nft_showcase/features/collection/pages/collection_detail_page.dart';
+import 'package:nft_showcase/features/collection/models/collection.dart';
 
 class CellCollectionItem extends StatelessWidget {
   final Collection _collection;

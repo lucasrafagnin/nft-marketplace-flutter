@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nft_showcase/pages/tab_collection.dart';
-import 'package:nft_showcase/pages/tab_nft.dart';
+import 'package:nft_showcase/features/collection/pages/tab_collection_page.dart';
+import 'package:nft_showcase/features/nft/pages/tab_nft_page.dart';
 
 class HomePage extends StatefulWidget {
   static const routeName = "/";

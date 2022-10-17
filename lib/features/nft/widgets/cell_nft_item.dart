@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nft_showcase/models/nft.dart';
-import 'package:nft_showcase/pages/nft_detail.dart';
+import 'package:nft_showcase/features/nft/pages/nft_detail_page.dart';
+import 'package:nft_showcase/features/nft/models/nft.dart';
 
 class CellNftItem extends StatelessWidget {
   final Nft _nft;

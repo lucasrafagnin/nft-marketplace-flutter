@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nft_showcase/controllers/nft_detail_controller.dart';
-import 'package:nft_showcase/models/nft.dart';
+import 'package:nft_showcase/features/nft/controllers/nft_detail_controller.dart';
+import 'package:nft_showcase/features/nft/models/nft.dart';
 import 'package:nft_showcase/repositories/collection_repository_impl.dart';
 import 'package:nft_showcase/service/api_service.dart';
 

@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
-import 'package:nft_showcase/models/nft.dart';
-
-import '../repositories/collection_repository.dart';
+import 'package:nft_showcase/features/nft/models/nft.dart';
+import 'package:nft_showcase/repositories/collection_repository.dart';
 
 class CollectionDetailController {
   final CollectionRepository repository;

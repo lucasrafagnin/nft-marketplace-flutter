@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
-import 'package:nft_showcase/models/ranking_nft.dart';
+import 'package:nft_showcase/features/nft/models/ranking_nft.dart';
 import 'package:nft_showcase/repositories/collection_repository.dart';
 import 'package:nft_showcase/service/api_service.dart';
 
-import '../models/nft.dart';
-import '../models/ranking_collection.dart';
+import '../features/nft/models/nft.dart';
+import '../features/collection/models/ranking_collection.dart';
 
 class CollectionRepositoryImpl extends CollectionRepository {
   final ApiService apiService;

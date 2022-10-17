@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:nft_showcase/controllers/collection_detail_controller.dart';
-import 'package:nft_showcase/models/collection.dart';
+import 'package:nft_showcase/features/collection/controllers/collection_detail_controller.dart';
+import 'package:nft_showcase/features/collection/models/collection.dart';
 import 'package:nft_showcase/repositories/collection_repository_impl.dart';
 import 'package:nft_showcase/service/api_service.dart';
-import 'package:nft_showcase/widgets/cell_nft_item.dart';
+import 'package:nft_showcase/features/nft/widgets/cell_nft_item.dart';
 
 class CollectionDetail extends StatefulWidget {
   static const routeName = "/collection";

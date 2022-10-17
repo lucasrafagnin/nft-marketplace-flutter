@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:nft_showcase/controllers/tab_nft_controller.dart';
+import 'package:nft_showcase/features/nft/controllers/tab_nft_controller.dart';
+import 'package:nft_showcase/repositories/collection_repository_impl.dart';
 import 'package:nft_showcase/service/api_service.dart';
-import 'package:nft_showcase/widgets/cell_nft_item.dart';
-import '../repositories/collection_repository_impl.dart';
+import 'package:nft_showcase/features/nft/widgets/cell_nft_item.dart';
 
 class TabNFT extends StatefulWidget {
   const TabNFT({super.key});

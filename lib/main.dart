@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:nft_showcase/models/collection.dart';
-import 'package:nft_showcase/models/nft.dart';
-import 'package:nft_showcase/pages/collection_detail.dart';
-import 'package:nft_showcase/pages/home_page.dart';
-import 'package:nft_showcase/pages/nft_detail.dart';
+import 'package:nft_showcase/features/collection/pages/collection_detail_page.dart';
+import 'package:nft_showcase/features/home/pages/home_page.dart';
+import 'package:nft_showcase/features/nft/pages/nft_detail_page.dart';
+import 'package:nft_showcase/features/collection/models/collection.dart';
+import 'package:nft_showcase/features/nft/models/nft.dart';
 
 void main() {
   runApp(const NftShowcase());
