@@ -84,6 +84,7 @@ class _TabNFTState extends State<TabNFT> {
                       },
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
+                        childAspectRatio: .8,
                         crossAxisCount: 2,
                       ),
                     ),
