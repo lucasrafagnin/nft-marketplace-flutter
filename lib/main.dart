@@ -16,7 +16,9 @@ class NftShowcase extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'NFT Showcase',
-      theme: ThemeData.dark(),
+      theme: ThemeData(
+        primaryColor: const Color(0xFF75CCD8),
+      ),
       debugShowCheckedModeBanner: false,
       initialRoute: HomePage.routeName,
       onGenerateRoute: (RouteSettings settings) {

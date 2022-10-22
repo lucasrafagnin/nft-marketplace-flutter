@@ -20,16 +20,33 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text("NFT Marketplace"),
-        backgroundColor: Colors.black,
+        title: const Text(
+          "Discover\nYour NFT",
+          style: TextStyle(color: Colors.black, fontSize: 24),
+        ),
+        toolbarHeight: 88,
+        elevation: 0,
+        backgroundColor: Colors.white,
+        actions: [
+          Padding(
+              padding: const EdgeInsets.only(right: 20.0),
+              child: GestureDetector(
+                onTap: () {},
+                child: const Icon(
+                  Icons.sunny,
+                  color: Color(0xFF75CCD8),
+                  size: 32,
+                ),
+              )),
+        ],
       ),
       body: _tabs[pageIndex],
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.grey,
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: const Color(0xFF172645),
         currentIndex: pageIndex,
         onTap: (int page) {
           setState(() {
@@ -38,11 +55,11 @@ class _HomePageState extends State<HomePage> {
         },
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.trending_up),
-            label: "Hype",
+            icon: Icon(Icons.camera),
+            label: "Discovery",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.collections),
+            icon: Icon(Icons.folder_copy_rounded),
             label: "Collections",
           ),
         ],

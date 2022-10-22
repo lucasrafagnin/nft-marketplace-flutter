@@ -45,15 +45,17 @@ class _TabNFTState extends State<TabNFT> {
               ),
               ChoiceChip(
                 label: Text(categoryTags[index]),
-                selected: choiceIndex == index,
-                selectedColor: Colors.purpleAccent,
                 onSelected: (bool selected) {
                   setState(() {
                     choiceIndex = selected ? index : choiceIndex;
                   });
                 },
-                backgroundColor: Colors.white10,
-                labelStyle: const TextStyle(color: Colors.white),
+                selected: choiceIndex == index,
+                selectedColor: const Color(0xFF172645),
+                backgroundColor: const Color(0xffF7F6F9),
+                labelStyle: TextStyle(
+                  color: choiceIndex == index ? Colors.white : Colors.black45,
+                ),
               ),
             ],
           );
@@ -75,17 +77,16 @@ class _TabNFTState extends State<TabNFT> {
                 if (value != null) {
                   return Padding(
                     padding: const EdgeInsets.only(left: 8, right: 8),
-                    child: GridView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemCount: value.length,
-                      itemBuilder: (context, index) {
-                        return CellNftItem(value[index]);
-                      },
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        childAspectRatio: .8,
-                        crossAxisCount: 2,
+                    child: SizedBox(
+                      height: 400,
+                      width: MediaQuery.of(context).size.width,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: value.length,
+                        itemBuilder: (context, index) {
+                          return CellNftItem(value[index]);
+                        },
                       ),
                     ),
                   );
