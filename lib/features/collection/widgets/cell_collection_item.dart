@@ -9,18 +9,76 @@ class CellCollectionItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: InkResponse(
-        onTap: () => Navigator.pushNamed(
-          context,
-          CollectionDetail.routeName,
-          arguments: _collection,
-        ),
-        child: Hero(
-          tag: _collection.contract,
-          child: Image.network(
-            _collection.logo,
-            fit: BoxFit.fitHeight,
+    return Hero(
+      tag: _collection.contract,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 16),
+        child: InkResponse(
+          onTap: () => Navigator.pushNamed(
+            context,
+            CollectionDetail.routeName,
+            arguments: _collection,
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              CircleAvatar(
+                radius: 24,
+                backgroundImage: NetworkImage(_collection.logo),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      _collection.name,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    Text(
+                      _collection.getCategoryName(),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontSize: 13,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    Text(
+                      _collection.getMarketCapFormatted(),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    Text(
+                      _collection.getMarketCapChangeAsPercentage(),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: _collection.marketCapChangePercentage < 0
+                            ? Colors.red
+                            : Colors.green,
+                      ),
+                    ),
+                  ],
+                ),
+              )
+            ],
           ),
         ),
       ),

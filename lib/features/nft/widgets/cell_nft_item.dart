@@ -48,15 +48,15 @@ class CellNftItem extends StatelessWidget {
   Widget labelWidget() => Padding(
         padding: const EdgeInsets.only(top: 16, left: 16),
         child: Text(
-          _nft.name,
-          maxLines: 1,
+          _nft.nameFormatted(),
+          maxLines: 2,
           style: const TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
           overflow: TextOverflow.ellipsis,
-          textAlign: TextAlign.center,
+          textAlign: TextAlign.left,
         ),
       );
 
@@ -66,7 +66,7 @@ class CellNftItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(24),
           child: Container(
             height: 60,
-            color: Colors.black54,
+            color: Colors.black87,
             child: Padding(
               padding: const EdgeInsets.only(left: 16),
               child: Row(
@@ -86,7 +86,10 @@ class CellNftItem extends StatelessWidget {
                       ),
                       const Text(
                         "Floor price",
-                        style: TextStyle(fontSize: 14, color: Colors.white60),
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.white60,
+                        ),
                       ),
                     ],
                   ),

@@ -29,14 +29,11 @@ class _TabCollectionState extends State<TabCollection> {
         valueListenable: _controller.collectionList,
         builder: (context, value, child) {
           if (value != null) {
-            return GridView.builder(
+            return ListView.builder(
               itemCount: value.length,
               itemBuilder: (context, index) {
                 return CellCollectionItem(value[index]);
               },
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-              ),
             );
           } else {
             return const CircularProgressIndicator();

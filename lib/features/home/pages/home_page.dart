@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
               child: GestureDetector(
                 onTap: () {},
                 child: const Icon(
-                  Icons.sunny,
+                  Icons.light_mode,
                   color: Color(0xFF75CCD8),
                   size: 32,
                 ),
