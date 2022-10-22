@@ -13,7 +13,7 @@ dependencies:
     sdk: flutter
   rxdart: 0.27.5
   dio: 4.0.6
-  cupertino_icons: ^1.0.2
+  loop_page_view: 1.2.0
 
 dev_dependencies:
   flutter_test:

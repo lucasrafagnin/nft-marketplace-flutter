@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loop_page_view/loop_page_view.dart';
 import 'package:nft_showcase/features/nft/controllers/tab_nft_controller.dart';
 import 'package:nft_showcase/repositories/collection_repository_impl.dart';
 import 'package:nft_showcase/service/api_service.dart';
@@ -31,6 +32,37 @@ class _TabNFTState extends State<TabNFT> {
     _controller.fetchNftRanking();
   }
 
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        _buildChoiceChips(),
+        ValueListenableBuilder(
+          valueListenable: _controller.nftList,
+          builder: (context, value, child) {
+            if (value != null) {
+              return Expanded(
+                child: LoopPageView.builder(
+                  controller: LoopPageController(
+                    viewportFraction: .88,
+                    initialPage: 2,
+                  ),
+                  scrollDirection: Axis.horizontal,
+                  itemCount: value.length,
+                  itemBuilder: (context, index) {
+                    return CellNftItem(value[index]);
+                  },
+                ),
+              );
+            } else {
+              return const CircularProgressIndicator();
+            }
+          },
+        ),
+      ],
+    );
+  }
+
   Widget _buildChoiceChips() {
     return SizedBox(
       height: 50,
@@ -60,43 +92,6 @@ class _TabNFTState extends State<TabNFT> {
             ],
           );
         },
-      ),
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          _buildChoiceChips(),
-          Center(
-            child: ValueListenableBuilder(
-              valueListenable: _controller.nftList,
-              builder: (context, value, child) {
-                if (value != null) {
-                  return Padding(
-                    padding: const EdgeInsets.only(left: 8, right: 8),
-                    child: SizedBox(
-                      height: 400,
-                      width: MediaQuery.of(context).size.width,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        physics: const BouncingScrollPhysics(),
-                        itemCount: value.length,
-                        itemBuilder: (context, index) {
-                          return CellNftItem(value[index]);
-                        },
-                      ),
-                    ),
-                  );
-                } else {
-                  return const CircularProgressIndicator();
-                }
-              },
-            ),
-          ),
-        ],
       ),
     );
   }
