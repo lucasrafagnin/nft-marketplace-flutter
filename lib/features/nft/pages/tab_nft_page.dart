@@ -37,12 +37,12 @@ class _TabNFTState extends State<TabNFT> {
     return Column(
       children: [
         _buildChoiceChips(),
-        ValueListenableBuilder(
-          valueListenable: _controller.nftList,
-          builder: (context, value, child) {
-            if (value != null) {
-              return Expanded(
-                child: Swiper(
+        Expanded(
+          child: ValueListenableBuilder(
+            valueListenable: _controller.nftList,
+            builder: (context, value, child) {
+              if (value != null) {
+                return Swiper(
                   scrollDirection: Axis.horizontal,
                   itemCount: value.length,
                   viewportFraction: 0.8,
@@ -50,12 +50,12 @@ class _TabNFTState extends State<TabNFT> {
                   itemBuilder: (context, index) {
                     return CellNftItem(value[index]);
                   },
-                ),
-              );
-            } else {
-              return const Center(child: CircularProgressIndicator());
-            }
-          },
+                );
+              } else {
+                return const Center(child: CircularProgressIndicator());
+              }
+            },
+          ),
         ),
       ],
     );
