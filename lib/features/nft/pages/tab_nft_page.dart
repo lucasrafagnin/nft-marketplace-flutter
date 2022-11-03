@@ -1,5 +1,5 @@
+import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
-import 'package:loop_page_view/loop_page_view.dart';
 import 'package:nft_showcase/features/nft/controllers/tab_nft_controller.dart';
 import 'package:nft_showcase/repositories/collection_repository_impl.dart';
 import 'package:nft_showcase/service/api_service.dart';
@@ -42,20 +42,18 @@ class _TabNFTState extends State<TabNFT> {
           builder: (context, value, child) {
             if (value != null) {
               return Expanded(
-                child: LoopPageView.builder(
-                  controller: LoopPageController(
-                    viewportFraction: .88,
-                    initialPage: 2,
-                  ),
+                child: Swiper(
                   scrollDirection: Axis.horizontal,
                   itemCount: value.length,
+                  viewportFraction: 0.8,
+                  scale: 0.9,
                   itemBuilder: (context, index) {
                     return CellNftItem(value[index]);
                   },
                 ),
               );
             } else {
-              return const CircularProgressIndicator();
+              return const Center(child: CircularProgressIndicator());
             }
           },
         ),
@@ -80,6 +78,8 @@ class _TabNFTState extends State<TabNFT> {
                 onSelected: (bool selected) {
                   setState(() {
                     choiceIndex = selected ? index : choiceIndex;
+                    _controller.fetchNftRanking(
+                        category: categoryTags[choiceIndex]);
                   });
                 },
                 selected: choiceIndex == index,

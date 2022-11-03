@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hybrid_image/hybrid_image.dart';
 import 'package:nft_showcase/features/nft/controllers/nft_detail_controller.dart';
 import 'package:nft_showcase/features/nft/models/nft.dart';
 import 'package:nft_showcase/repositories/collection_repository_impl.dart';
@@ -37,7 +38,7 @@ class NftDetailState extends State<NftDetail> {
           children: [
             Stack(
               children: [
-                Image.network(
+                HybridImage.network(
                   nft.image,
                   width: MediaQuery.of(context).size.width,
                   fit: BoxFit.fitWidth,
@@ -50,9 +51,8 @@ class NftDetailState extends State<NftDetail> {
                     child: ElevatedButton(
                       onPressed: () => Navigator.pop(context),
                       style: ElevatedButton.styleFrom(
-                        shape: const CircleBorder(),
-                        backgroundColor: Colors.transparent
-                      ),
+                          shape: const CircleBorder(),
+                          backgroundColor: Colors.transparent),
                       child: const Icon(
                         Icons.arrow_back_rounded,
                         size: 32,
@@ -107,13 +107,6 @@ class NftDetailState extends State<NftDetail> {
             textAlign: TextAlign.start,
           ),
           Divider(height: 40),
-          Text(
-            "Descrição do NFTDescrição do NFT Descrição do NFT Descrição do NFT Descrição do NFT Descrição do NFT Descrição do NFT",
-            style: TextStyle(
-              color: Colors.blueGrey,
-              fontSize: 13,
-            ),
-          )
         ],
       ),
     );

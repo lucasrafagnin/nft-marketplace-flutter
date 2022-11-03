@@ -24,10 +24,10 @@ class CollectionRepositoryImpl extends CollectionRepository {
   }
 
   @override
-  Future<RankingNft> getNftRanking() async {
+  Future<RankingNft> getNftRanking(String category) async {
     try {
       var response = await apiService.getHttpClient().get(
-          "${ApiService.baseUrl}/eth/v1/market/rank/nft/30d?by=highest_price&category=ALL");
+          "${ApiService.baseUrl}/eth/v1/market/rank/nft/30d?by=highest_price&category=$category");
       return RankingNft.fromJson(response.data);
     } catch (ignored) {
       return const RankingNft(nfts: [], total: 1);

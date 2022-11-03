@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hybrid_image/hybrid_image.dart';
 import 'package:nft_showcase/features/collection/controllers/collection_detail_controller.dart';
 import 'package:nft_showcase/features/collection/models/collection.dart';
 import 'package:nft_showcase/repositories/collection_repository_impl.dart';
@@ -40,7 +41,7 @@ class _CollectionDetailState extends State<CollectionDetail> {
             children: [
               Hero(
                 tag: widget.collection.contract,
-                child: Image.network(
+                child: HybridImage.network(
                   widget.collection.logo,
                   height: 220,
                   width: 220,

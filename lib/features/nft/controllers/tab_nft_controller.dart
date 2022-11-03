@@ -9,7 +9,7 @@ class TabNftController {
 
   TabNftController(this.repository);
 
-  fetchNftRanking() async {
-    nftList.value = (await repository.getNftRanking()).nfts;
+  fetchNftRanking({String category = "ALL"}) async {
+    nftList.value = (await repository.getNftRanking(category.toUpperCase())).nfts;
   }
 }

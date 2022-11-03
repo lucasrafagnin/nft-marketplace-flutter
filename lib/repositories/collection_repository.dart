@@ -5,7 +5,7 @@ import '../features/collection/models/ranking_collection.dart';
 
 abstract class CollectionRepository {
   Future<RankingCollection> getCollectionRanking();
-  Future<RankingNft> getNftRanking();
+  Future<RankingNft> getNftRanking(String category);
   Future<List<Nft>> getNFTsByCollection(String contract);
   Future<Nft> getNFTDetail(String contract, String tokenId);
 }
