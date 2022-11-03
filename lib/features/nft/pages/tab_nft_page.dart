@@ -46,7 +46,7 @@ class _TabNFTState extends State<TabNFT> {
                   scrollDirection: Axis.horizontal,
                   itemCount: value.length,
                   viewportFraction: 0.8,
-                  scale: 0.9,
+                  scale: 0.95,
                   itemBuilder: (context, index) {
                     return CellNftItem(value[index]);
                   },
