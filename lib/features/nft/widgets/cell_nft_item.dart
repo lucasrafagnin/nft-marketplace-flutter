@@ -34,7 +34,7 @@ class CellNftItem extends StatelessWidget {
                   _nft.image,
                   fit: BoxFit.fitHeight,
                 ),
-                Positioned(top: 0, left: 0, child: labelWidget()),
+                Positioned(top: 16, left: 16, right: 0, child: labelWidget()),
                 Positioned(bottom: 0, left: 0, right: 0, child: priceWidget()),
               ],
             ),
@@ -44,23 +44,20 @@ class CellNftItem extends StatelessWidget {
     );
   }
 
-  Widget labelWidget() => Padding(
-        padding: const EdgeInsets.only(top: 16, left: 16),
-        child: Text(
-          _nft.nameFormatted(),
-          maxLines: 2,
-          style: const TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-          overflow: TextOverflow.ellipsis,
-          textAlign: TextAlign.left,
+  Widget labelWidget() => Text(
+        _nft.nameFormatted(),
+        maxLines: 2,
+        style: const TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+          color: Colors.white,
         ),
+        overflow: TextOverflow.ellipsis,
+        textAlign: TextAlign.left,
       );
 
   Widget priceWidget() => Padding(
-        padding: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
+        padding: const EdgeInsets.all(16),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(24),
           child: Container(
