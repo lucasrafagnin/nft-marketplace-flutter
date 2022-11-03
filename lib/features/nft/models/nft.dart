@@ -27,5 +27,6 @@ class Nft {
   }
 
   String nameFormatted() => name.replaceAll("#", "\n#");
-  String priceFormatted() => "$price $crypto";
+
+  String priceFormatted() => "${price.toStringAsFixed(2)} $crypto";
 }
