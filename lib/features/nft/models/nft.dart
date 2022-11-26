@@ -21,8 +21,8 @@ class Nft {
       name: json['name'],
       tokenId: json['token_id'],
       contract: json['contract_address'],
-      price: json['max_price']["value"],
-      crypto: json['max_price']["crypto_unit"],
+      price: json['max_price']?["value"] ?? 0.0,
+      crypto: json['max_price']?["crypto_unit"] ?? "",
     );
   }
 
