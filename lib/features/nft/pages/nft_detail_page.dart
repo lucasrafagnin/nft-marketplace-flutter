@@ -33,6 +33,7 @@ class NftDetailState extends State<NftDetail> {
   Widget build(BuildContext context) {
     var nft = widget.nft;
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -44,8 +45,8 @@ class NftDetailState extends State<NftDetail> {
                   fit: BoxFit.fitWidth,
                 ),
                 Positioned(
-                  left: 20,
-                  top: 40,
+                  left: 12,
+                  top: 32,
                   child: SizedBox(
                     height: 56,
                     child: ElevatedButton(
@@ -63,9 +64,9 @@ class NftDetailState extends State<NftDetail> {
                 ),
                 Positioned(
                   right: 16,
-                  top: 40,
+                  top: 32,
                   child: SizedBox(
-                    height: 56,
+                    height: 52,
                     child: ElevatedButton(
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
