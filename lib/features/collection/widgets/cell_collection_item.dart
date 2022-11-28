@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:nft_showcase/features/collection/pages/collection_detail_page.dart';
 import 'package:nft_showcase/features/collection/models/collection.dart';
 
+import '../../../config.dart';
+
 class CellCollectionItem extends StatelessWidget {
   final Collection _collection;
 
@@ -36,17 +38,19 @@ class CellCollectionItem extends StatelessWidget {
                     _collection.name,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500,
+                    style: TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                        color: customColors(context).primaryText,
                     ),
                   ),
                   Text(
                     _collection.getCategoryName(),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 13,
+                      color: customColors(context).secondaryText,
                     ),
                   ),
                 ],
@@ -60,9 +64,10 @@ class CellCollectionItem extends StatelessWidget {
                     _collection.getMarketCapFormatted(),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 15,
                       fontWeight: FontWeight.w500,
+                      color: customColors(context).primaryText,
                     ),
                   ),
                   Text(
@@ -72,8 +77,8 @@ class CellCollectionItem extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 13,
                       color: _collection.marketCapChangePercentage < 0
-                          ? Colors.red
-                          : Colors.green,
+                          ? customColors(context).marketNegative
+                          : customColors(context).marketPositive,
                     ),
                   ),
                 ],

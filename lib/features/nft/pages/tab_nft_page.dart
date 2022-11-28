@@ -1,5 +1,6 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
+import 'package:nft_showcase/config.dart';
 import 'package:nft_showcase/features/nft/controllers/tab_nft_controller.dart';
 import 'package:nft_showcase/repositories/collection_repository_impl.dart';
 import 'package:nft_showcase/service/api_service.dart';
@@ -86,7 +87,7 @@ class _TabNFTState extends State<TabNFT> {
                 selectedColor: const Color(0xFF172645),
                 backgroundColor: const Color(0xffF7F6F9),
                 labelStyle: TextStyle(
-                  color: choiceIndex == index ? Colors.white : Colors.black45,
+                  color: choiceIndex == index ? customColors(context).chipSelected : customColors(context).chipUnselected,
                 ),
               ),
             ],

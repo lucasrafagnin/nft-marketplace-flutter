@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hybrid_image/hybrid_image.dart';
+import 'package:nft_showcase/config.dart';
 import 'package:nft_showcase/features/nft/controllers/nft_detail_controller.dart';
 import 'package:nft_showcase/features/nft/models/nft.dart';
 import 'package:nft_showcase/repositories/collection_repository_impl.dart';
@@ -33,7 +34,7 @@ class NftDetailState extends State<NftDetail> {
   Widget build(BuildContext context) {
     var nft = widget.nft;
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: customColors(context).background,
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -62,25 +63,6 @@ class NftDetailState extends State<NftDetail> {
                     ),
                   ),
                 ),
-                Positioned(
-                  right: 16,
-                  top: 32,
-                  child: SizedBox(
-                    height: 52,
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(
-                        shape: const CircleBorder(),
-                        backgroundColor: const Color(0xA6FFFFFF),
-                      ),
-                      child: const Icon(
-                        Icons.favorite,
-                        size: 24,
-                        color: Colors.red,
-                      ),
-                    ),
-                  ),
-                ),
               ],
             ),
             const SizedBox(height: 8),
@@ -98,16 +80,16 @@ class NftDetailState extends State<NftDetail> {
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Column(
-        children: const [
+        children: [
           Text(
             "Nome do NFT",
             style: TextStyle(
-              color: Colors.black,
+              color: customColors(context).primaryText,
               fontSize: 22,
             ),
             textAlign: TextAlign.start,
           ),
-          Divider(height: 40),
+          const Divider(height: 40),
         ],
       ),
     );

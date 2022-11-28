@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hybrid_image/hybrid_image.dart';
+import 'package:nft_showcase/config.dart';
 import 'package:nft_showcase/features/nft/pages/nft_detail_page.dart';
 import 'package:nft_showcase/features/nft/models/nft.dart';
 
@@ -34,8 +35,8 @@ class CellNftItem extends StatelessWidget {
                   _nft.image,
                   fit: BoxFit.fitHeight,
                 ),
-                Positioned(top: 16, left: 16, right: 0, child: labelWidget()),
-                Positioned(bottom: 0, left: 0, right: 0, child: priceWidget()),
+                Positioned(top: 16, left: 16, right: 0, child: labelWidget(context)),
+                Positioned(bottom: 0, left: 0, right: 0, child: priceWidget(context)),
               ],
             ),
           ),
@@ -44,25 +45,25 @@ class CellNftItem extends StatelessWidget {
     );
   }
 
-  Widget labelWidget() => Text(
+  Widget labelWidget(BuildContext context) => Text(
         _nft.nameFormatted(),
         maxLines: 2,
-        style: const TextStyle(
+        style: TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.bold,
-          color: Colors.white,
+          color: customColors(context).primaryContrastText,
         ),
         overflow: TextOverflow.ellipsis,
         textAlign: TextAlign.left,
       );
 
-  Widget priceWidget() => Padding(
+  Widget priceWidget(BuildContext context) => Padding(
         padding: const EdgeInsets.all(16),
         child: ClipRRect(
           borderRadius: BorderRadius.circular(24),
           child: Container(
             height: 60,
-            color: Colors.black87,
+            color: customColors(context).secondaryText,
             child: Padding(
               padding: const EdgeInsets.only(left: 16),
               child: Row(
@@ -75,16 +76,17 @@ class CellNftItem extends StatelessWidget {
                       Text(
                         _nft.priceFormatted(),
                         maxLines: 1,
-                        style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: customColors(context).primaryContrastText,
+                        ),
                       ),
-                      const Text(
+                      Text(
                         "Floor price",
                         style: TextStyle(
                           fontSize: 14,
-                          color: Colors.white60,
+                          color: customColors(context).secondaryContrastText,
                         ),
                       ),
                     ],

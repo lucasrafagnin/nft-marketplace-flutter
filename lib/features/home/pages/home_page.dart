@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:nft_showcase/config.dart';
 import 'package:nft_showcase/features/collection/pages/tab_collection_page.dart';
 import 'package:nft_showcase/features/nft/pages/tab_nft_page.dart';
+import 'package:nft_showcase/theme/app_theme.dart';
 
 class HomePage extends StatefulWidget {
   static const routeName = "/";
@@ -20,20 +22,22 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: customColors(context).background,
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           "Discover\nYour NFT",
-          style: TextStyle(color: Colors.black, fontSize: 24),
+          style: TextStyle(color: customColors(context).primaryText, fontSize: 24),
         ),
         toolbarHeight: 88,
         elevation: 0,
-        backgroundColor: Colors.white,
+        backgroundColor: customColors(context).background,
         actions: [
           Padding(
               padding: const EdgeInsets.only(right: 20.0),
               child: GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  appTheme.switchTheme();
+                },
                 child: const Icon(
                   Icons.light_mode,
                   color: Color(0xFF75CCD8),
@@ -44,9 +48,9 @@ class _HomePageState extends State<HomePage> {
       ),
       body: _tabs[pageIndex],
       bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.grey,
-        backgroundColor: const Color(0xFF172645),
+        selectedItemColor: customColors(context).bottomNavigationSelected,
+        unselectedItemColor: customColors(context).bottomNavigationUnselected,
+        backgroundColor: customColors(context).bottomNavigationBackground,
         currentIndex: pageIndex,
         onTap: (int page) {
           setState(() {

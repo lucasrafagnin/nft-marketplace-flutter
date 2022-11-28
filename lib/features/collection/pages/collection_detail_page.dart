@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:nft_showcase/config.dart';
 import 'package:nft_showcase/features/collection/controllers/collection_detail_controller.dart';
 import 'package:nft_showcase/features/collection/models/collection.dart';
 import 'package:nft_showcase/features/nft/widgets/cell_nft_item_simple.dart';
 import 'package:nft_showcase/repositories/collection_repository_impl.dart';
 import 'package:nft_showcase/service/api_service.dart';
-import 'package:nft_showcase/features/nft/widgets/cell_nft_item.dart';
 
 class CollectionDetail extends StatefulWidget {
   static const routeName = "/collection";
@@ -30,7 +30,7 @@ class _CollectionDetailState extends State<CollectionDetail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: customColors(context).background,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Center(
