@@ -1,5 +1,5 @@
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
-import 'package:hybrid_image/hybrid_image.dart';
 import 'package:nft_showcase/config.dart';
 import 'package:nft_showcase/features/nft/pages/nft_detail_page.dart';
 import 'package:nft_showcase/features/nft/models/nft.dart';
@@ -31,9 +31,10 @@ class CellNftItem extends StatelessWidget {
             child: Stack(
               fit: StackFit.expand,
               children: [
-                HybridImage.network(
+                ExtendedImage.network(
                   _nft.image,
                   fit: BoxFit.fitHeight,
+                  cache: true,
                 ),
                 Positioned(top: 16, left: 16, right: 0, child: labelWidget(context)),
                 Positioned(bottom: 0, left: 0, right: 0, child: priceWidget(context)),

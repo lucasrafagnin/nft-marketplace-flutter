@@ -1,5 +1,5 @@
+import 'package:extended_image/extended_image.dart';
 import 'package:flutter/material.dart';
-import 'package:hybrid_image/hybrid_image.dart';
 import 'package:nft_showcase/config.dart';
 import 'package:nft_showcase/features/nft/controllers/nft_detail_controller.dart';
 import 'package:nft_showcase/features/nft/models/nft.dart';
@@ -40,10 +40,11 @@ class NftDetailState extends State<NftDetail> {
           children: [
             Stack(
               children: [
-                HybridImage.network(
+                ExtendedImage.network(
                   nft.image,
                   width: MediaQuery.of(context).size.width,
                   fit: BoxFit.fitWidth,
+                  cache: true,
                 ),
                 Positioned(
                   left: 12,
