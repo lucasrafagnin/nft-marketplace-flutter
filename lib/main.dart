@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:nft_showcase/config.dart';
 import 'package:nft_showcase/features/collection/pages/collection_detail_page.dart';
 import 'package:nft_showcase/features/home/pages/home_page.dart';
@@ -7,7 +8,8 @@ import 'package:nft_showcase/features/collection/models/collection.dart';
 import 'package:nft_showcase/features/nft/models/nft.dart';
 import 'package:nft_showcase/theme/themes.dart';
 
-void main() {
+Future main() async {
+  await dotenv.load(fileName: ".env");
   runApp(const NftShowcase());
 }
 
