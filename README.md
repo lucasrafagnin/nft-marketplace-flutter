@@ -1,16 +1,22 @@
-# nft_showcase
 
-A Flutter showcase project.
+<p align="center"><img src="android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" width="80" /></p>
+<h1 align="center">NFT Marketplace</h1></br>
 
-## Getting Started
+<p align="center">
+A NFT Marketplace 🎨 built with Flutter. Data provided by NFT GO.<br>
+</p>
 
-This project is a starting point for a Flutter application.
+## Tech Stack 🛠
+- [Flutter](https://flutter.dev/) - Framework for Hybrid development.
+- [RxDart](https://pub.dev/packages/rxdart) - RxDart extends the capabilities of Dart Streams and StreamControllers. 
+- [Dio](https://pub.dev/packages/dio) - Http client for Dart.
+- [Intl](https://pub.dev/packages/intl) - Provides internationalization and localization facilities, including message translation, plurals and genders, date/number formatting and parsing, and bidirectional text.
+- [CardSwiper](https://pub.dev/packages/card_swiper) - Swiper/Carousel for flutter.
+- [ExtendedImage](https://pub.dev/packages/extended_image) - Powerful library of images.
+- [DotEnv](https://pub.dev/packages/dotenv) - Load environment variables at runtime from a .env file.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Features 🔖
+- List of nft items by category
+- Ranking of NFT collections
+- NFT detail page
+- Dark theme
