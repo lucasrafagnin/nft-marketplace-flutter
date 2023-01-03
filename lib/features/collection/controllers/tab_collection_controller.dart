@@ -1,15 +1,11 @@
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:nft_showcase/features/collection/models/collection.dart';
+import 'package:provider/provider.dart';
 
 import '../../../repositories/collection_repository.dart';
 
 class TabCollectionController {
-  final CollectionRepository repository;
-  var collectionList = ValueNotifier<List<Collection>?>(null);
-
-  TabCollectionController(this.repository);
-
-  fetchCollectionRanking() async {
-    collectionList.value = (await repository.getCollectionRanking()).collection;
-  }
+  Future<List<Collection>> fetchCollectionRanking(
+    BuildContext context,
+  ) async => (await Provider.of<CollectionRepository>(context).getCollectionRanking()).collection;
 }

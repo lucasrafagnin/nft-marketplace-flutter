@@ -3,8 +3,9 @@ import 'package:nft_showcase/config.dart';
 import 'package:nft_showcase/features/collection/controllers/collection_detail_controller.dart';
 import 'package:nft_showcase/features/collection/models/collection.dart';
 import 'package:nft_showcase/features/nft/widgets/cell_nft_item_simple.dart';
-import 'package:nft_showcase/repositories/collection_repository_impl.dart';
-import 'package:nft_showcase/service/api_service.dart';
+import 'package:provider/provider.dart';
+
+import '../../nft/models/nft.dart';
 
 class CollectionDetail extends StatefulWidget {
   static const routeName = "/collection";
@@ -17,16 +18,6 @@ class CollectionDetail extends StatefulWidget {
 }
 
 class _CollectionDetailState extends State<CollectionDetail> {
-  final _controller = CollectionDetailController(
-    CollectionRepositoryImpl(ApiService()),
-  );
-
-  @override
-  void initState() {
-    super.initState();
-    _controller.fetchNFTsByCollection(widget.collection.contract);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,22 +40,27 @@ class _CollectionDetailState extends State<CollectionDetail> {
                   ),
                 ),
                 const SizedBox(height: 24),
-                ValueListenableBuilder(
-                  valueListenable: _controller.nftList,
-                  builder: (context, value, child) {
-                    if (value.isNotEmpty) {
+                FutureBuilder<List<Nft>>(
+                  future: Provider.of<CollectionDetailController>(context)
+                      .fetchNFTsByCollection(
+                          context, widget.collection.contract),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
                       return GridView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
-                        itemCount: value.length,
+                        itemCount: snapshot.data!.length,
                         itemBuilder: (context, index) {
-                          return CellNftItemSimple(value[index]);
+                          final item = snapshot.data![index];
+                          return CellNftItemSimple(item);
                         },
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
                           crossAxisCount: 2,
                         ),
                       );
+                    } else if (snapshot.hasError) {
+                      return Text("${snapshot.error}");
                     } else {
                       return const CircularProgressIndicator();
                     }

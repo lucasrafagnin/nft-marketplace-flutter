@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:nft_showcase/features/collection/controllers/tab_collection_controller.dart';
-import 'package:nft_showcase/repositories/collection_repository_impl.dart';
-import 'package:nft_showcase/service/api_service.dart';
+import 'package:nft_showcase/features/collection/models/collection.dart';
 import 'package:nft_showcase/features/collection/widgets/cell_collection_item.dart';
+import 'package:provider/provider.dart';
 
 class TabCollection extends StatefulWidget {
   const TabCollection({super.key});
@@ -12,32 +12,25 @@ class TabCollection extends StatefulWidget {
 }
 
 class _TabCollectionState extends State<TabCollection> {
-  final _controller = TabCollectionController(
-    CollectionRepositoryImpl(ApiService()),
-  );
-
-  @override
-  void initState() {
-    super.initState();
-    _controller.fetchCollectionRanking();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: ValueListenableBuilder(
-        valueListenable: _controller.collectionList,
-        builder: (context, value, child) {
-          if (value != null) {
+      child: FutureBuilder<List<Collection>>(
+        future: Provider.of<TabCollectionController>(context).fetchCollectionRanking(context),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
             return ListView.builder(
-              itemCount: value.length,
+              itemCount: snapshot.data!.length,
               itemBuilder: (context, index) {
-                return CellCollectionItem(value[index]);
+                final item = snapshot.data![index];
+                return CellCollectionItem(item);
               },
             );
-          } else {
-            return const CircularProgressIndicator();
+          } else if (snapshot.hasError) {
+            return Text("${snapshot.error}");
           }
+          return const CircularProgressIndicator();
         },
       ),
     );

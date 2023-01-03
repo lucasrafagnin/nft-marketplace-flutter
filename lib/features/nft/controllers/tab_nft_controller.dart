@@ -1,15 +1,20 @@
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:nft_showcase/features/nft/models/nft.dart';
+import 'package:provider/provider.dart';
 
 import '../../../repositories/collection_repository.dart';
 
 class TabNftController {
-  final CollectionRepository repository;
-  var nftList = ValueNotifier<List<Nft>?>(null);
+  var nftList = ValueNotifier<List<Nft>>(List.empty());
 
-  TabNftController(this.repository);
-
-  fetchNftRanking({String category = "ALL"}) async {
-    nftList.value = (await repository.getNftRanking(category.toUpperCase())).nfts;
+   Future<List<Nft>> fetchNftRanking(
+    BuildContext context, {
+    String category = "ALL",
+  }) async {
+     var response = (await Provider.of<CollectionRepository>(context).getNftRanking(
+      category.toUpperCase(),
+    )).nfts;
+    nftList.value = response;
+    return response;
   }
 }

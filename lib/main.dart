@@ -1,16 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:nft_showcase/config.dart';
+import 'package:nft_showcase/features/collection/controllers/collection_detail_controller.dart';
+import 'package:nft_showcase/features/collection/controllers/tab_collection_controller.dart';
 import 'package:nft_showcase/features/collection/pages/collection_detail_page.dart';
 import 'package:nft_showcase/features/home/pages/home_page.dart';
+import 'package:nft_showcase/features/nft/controllers/nft_detail_controller.dart';
+import 'package:nft_showcase/features/nft/controllers/tab_nft_controller.dart';
 import 'package:nft_showcase/features/nft/pages/nft_detail_page.dart';
 import 'package:nft_showcase/features/collection/models/collection.dart';
 import 'package:nft_showcase/features/nft/models/nft.dart';
+import 'package:nft_showcase/repositories/collection_repository.dart';
+import 'package:nft_showcase/repositories/collection_repository_impl.dart';
+import 'package:nft_showcase/service/api_service.dart';
 import 'package:nft_showcase/theme/themes.dart';
+import 'package:provider/provider.dart';
 
 Future main() async {
   await dotenv.load(fileName: ".env");
-  runApp(const NftShowcase());
+  runApp(
+    MultiProvider(providers: [
+      Provider<CollectionRepository>(create: (context) => CollectionRepositoryImpl(ApiService())),
+      Provider(create: (context) => TabCollectionController()),
+      Provider(create: (context) => TabNftController()),
+      Provider(create: (context) => NftDetailController()),
+      Provider(create: (context) => CollectionDetailController()),
+    ], child: const NftShowcase()),
+  );
 }
 
 class NftShowcase extends StatelessWidget {
