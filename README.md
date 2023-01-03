@@ -10,6 +10,7 @@ A NFT Marketplace 🎨 built with Flutter. Data provided by NFT GO.<br>
 - [Flutter](https://flutter.dev/) - Framework for Hybrid development.
 - [RxDart](https://pub.dev/packages/rxdart) - RxDart extends the capabilities of Dart Streams and StreamControllers. 
 - [Dio](https://pub.dev/packages/dio) - Http client for Dart.
+- [Provider](https://pub.dev/packages/provider) - DI.
 - [Intl](https://pub.dev/packages/intl) - Provides internationalization and localization facilities, including message translation, plurals and genders, date/number formatting and parsing, and bidirectional text.
 - [CardSwiper](https://pub.dev/packages/card_swiper) - Swiper/Carousel for flutter.
 - [ExtendedImage](https://pub.dev/packages/extended_image) - Powerful library of images.
