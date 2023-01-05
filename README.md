@@ -5,6 +5,13 @@
 <p align="center">
 A NFT Marketplace 🎨 built with Flutter. Data provided by NFT GO.<br>
 </p>
+<br>
+
+<p align="center">
+| <img src="https://github.com/lucasrafagnin/nft-marketplace-flutter/blob/master/github/assets/image_1.png" width="200">      | <img src="https://github.com/lucasrafagnin/nft-marketplace-flutter/blob/master/github/assets/image_2.png" width="200"> | <img src="https://github.com/lucasrafagnin/nft-marketplace-flutter/blob/master/github/assets/image_3.png" width="200"> |
+<img src="https://github.com/lucasrafagnin/nft-marketplace-flutter/blob/master/github/assets/image_4.png" width="200">
+</a>
+
 
 ## Tech Stack 🛠
 - [Flutter](https://flutter.dev/) - Framework for Hybrid development.
