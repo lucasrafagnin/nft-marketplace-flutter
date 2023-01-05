@@ -5,8 +5,6 @@ import 'package:nft_showcase/features/nft/controllers/tab_nft_controller.dart';
 import 'package:nft_showcase/features/nft/widgets/cell_nft_item.dart';
 import 'package:provider/provider.dart';
 
-import '../models/nft.dart';
-
 class TabNFT extends StatefulWidget {
   const TabNFT({super.key});
 
@@ -15,6 +13,7 @@ class TabNFT extends StatefulWidget {
 }
 
 class _TabNFTState extends State<TabNFT> {
+  TabNftController? _controller;
   final categoryTags = [
     "All",
     "Metaverse",
@@ -26,28 +25,34 @@ class _TabNFTState extends State<TabNFT> {
   var choiceIndex = 0;
 
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      _controller = Provider.of<TabNftController>(context, listen: false);
+      _controller?.fetchNftRanking(context);
+      setState(() {});
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         _buildChoiceChips(),
         Expanded(
-          child: FutureBuilder<List<Nft>>(
-            future:
-                Provider.of<TabNftController>(context).fetchNftRanking(context),
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
+          child: ValueListenableBuilder(
+            valueListenable: _controller?.nftList ?? ValueNotifier([]),
+            builder: (context, value, child) {
+              if (value.isNotEmpty) {
                 return Swiper(
                   scrollDirection: Axis.horizontal,
-                  itemCount: snapshot.data!.length,
+                  itemCount: value.length,
                   viewportFraction: 0.8,
                   scale: 0.95,
                   itemBuilder: (context, index) {
-                    var item = snapshot.data![index];
-                    return CellNftItem(item);
+                    return CellNftItem(value[index]);
                   },
                 );
-              } else if (snapshot.hasError) {
-                return Text("${snapshot.error}");
               } else {
                 return const Center(child: CircularProgressIndicator());
               }
@@ -75,7 +80,7 @@ class _TabNFTState extends State<TabNFT> {
                 onSelected: (bool selected) {
                   setState(() {
                     choiceIndex = selected ? index : choiceIndex;
-                    Provider.of<TabNftController>(context).fetchNftRanking(
+                    _controller?.fetchNftRanking(
                       context,
                       category: categoryTags[choiceIndex],
                     );

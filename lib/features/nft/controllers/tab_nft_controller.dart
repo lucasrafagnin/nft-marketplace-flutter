@@ -7,14 +7,13 @@ import '../../../repositories/collection_repository.dart';
 class TabNftController {
   var nftList = ValueNotifier<List<Nft>>(List.empty());
 
-   Future<List<Nft>> fetchNftRanking(
+  fetchNftRanking(
     BuildContext context, {
     String category = "ALL",
   }) async {
-     var response = (await Provider.of<CollectionRepository>(context).getNftRanking(
+    nftList.value =
+        (await Provider.of<CollectionRepository>(context, listen: false).getNftRanking(
       category.toUpperCase(),
     )).nfts;
-    nftList.value = response;
-    return response;
   }
 }
